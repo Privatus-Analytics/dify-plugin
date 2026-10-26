@@ -9,3 +9,4 @@ __pycache__/
 dist/
 *.difypkg
 SUBMISSION*.md
+PR_BODY.md
