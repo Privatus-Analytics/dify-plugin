@@ -1,0 +1,34 @@
+identity:
+  name: get_live_visitors
+  author: privatus-analytics
+  label:
+    en_US: Get Live Visitors
+description:
+  human:
+    en_US: Gets how many people are on a site right now and what they are looking at.
+  llm: 'Gets what is happening on a website right now: live visitors (last 5 minutes), top pages, referrers, countries and events of the last 30 minutes, and the latest anonymous activity.'
+parameters:
+- name: site
+  type: string
+  required: true
+  label:
+    en_US: Site
+  human_description:
+    en_US: The site ID (like pa_7Q2K9XH3AB) or its domain (like example.com).
+  llm_description: The site to read. Either the site ID that starts with pa_ or the domain of the site, like example.com. Use list_sites to find them.
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Activity rows
+  human_description:
+    en_US: How many recent hits to list, 1 to 100.
+  llm_description: Number of recent activity entries, 1 to 100. Default 10.
+  form: llm
+  default: 10
+  min: 1
+  max: 100
+extra:
+  python:
+    source: tools/get_live_visitors.py

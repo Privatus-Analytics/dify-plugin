@@ -1,0 +1,22 @@
+identity:
+  name: list_sites
+  author: privatus-analytics
+  label:
+    en_US: List Sites
+description:
+  human:
+    en_US: Lists the websites in your Privatus Analytics workspace, with their IDs and domains.
+  llm: Lists every website in the connected Privatus Analytics workspace with its site ID (pa_...), domain, name and timezone. Use it first to find the site to ask about.
+parameters:
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Search
+  human_description:
+    en_US: Only sites whose domain or name contains this text.
+  llm_description: Optional text to match on the site domain or name.
+  form: llm
+extra:
+  python:
+    source: tools/list_sites.py

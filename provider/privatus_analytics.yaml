@@ -1,0 +1,33 @@
+identity:
+  author: privatus-analytics
+  name: privatus_analytics
+  label:
+    en_US: Privatus Analytics
+  description:
+    en_US: See how your website is doing without leaving Dify. Visitor numbers, top pages, referrers, live visitors and goals, with no cookies.
+  icon: icon.svg
+  icon_dark: icon-dark.svg
+  tags:
+    - business
+    - productivity
+credentials_for_provider:
+  api_token:
+    type: secret-input
+    required: true
+    label:
+      en_US: API token
+    placeholder:
+      en_US: pat_...
+    help:
+      en_US: In Privatus Analytics open Workspace settings, then API tokens, and create a token. It starts with pat_.
+    url: https://privatusanalytics.com/docs/api
+tools:
+  - tools/list_sites.yaml
+  - tools/get_stats.yaml
+  - tools/get_timeseries.yaml
+  - tools/get_top_values.yaml
+  - tools/get_live_visitors.yaml
+  - tools/list_goals.yaml
+extra:
+  python:
+    source: provider/privatus_analytics.py

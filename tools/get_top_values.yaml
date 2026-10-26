@@ -1,0 +1,173 @@
+identity:
+  name: get_top_values
+  author: privatus-analytics
+  label:
+    en_US: Get Top Pages, Referrers and More
+description:
+  human:
+    en_US: Gets the top pages, referrers, countries, devices, campaigns, events or goals of a site.
+  llm: 'Gets the top values of one report for a website and period, sorted by the main count: pages, entry_page, exit_page, referrer, channel, utm_source, utm_medium, utm_campaign, country, language, device, browser, os, hostname, event (custom events) or goal.'
+parameters:
+- name: site
+  type: string
+  required: true
+  label:
+    en_US: Site
+  human_description:
+    en_US: The site ID (like pa_7Q2K9XH3AB) or its domain (like example.com).
+  llm_description: The site to read. Either the site ID that starts with pa_ or the domain of the site, like example.com. Use list_sites to find them.
+  form: llm
+- name: dimension
+  type: select
+  required: true
+  label:
+    en_US: Report
+  human_description:
+    en_US: What to list.
+  llm_description: Which report to return.
+  form: llm
+  default: page
+  options:
+  - value: page
+    label:
+      en_US: Pages
+  - value: entry_page
+    label:
+      en_US: Entry pages
+  - value: exit_page
+    label:
+      en_US: Exit pages
+  - value: referrer
+    label:
+      en_US: Referrers
+  - value: channel
+    label:
+      en_US: Channels
+  - value: utm_source
+    label:
+      en_US: UTM source
+  - value: utm_medium
+    label:
+      en_US: UTM medium
+  - value: utm_campaign
+    label:
+      en_US: UTM campaign
+  - value: country
+    label:
+      en_US: Countries
+  - value: language
+    label:
+      en_US: Languages
+  - value: device
+    label:
+      en_US: Devices
+  - value: browser
+    label:
+      en_US: Browsers
+  - value: os
+    label:
+      en_US: Operating systems
+  - value: hostname
+    label:
+      en_US: Hostnames
+  - value: event
+    label:
+      en_US: Custom events
+  - value: goal
+    label:
+      en_US: Goals
+- name: period
+  type: select
+  required: false
+  label:
+    en_US: Period
+  human_description:
+    en_US: Which dates to look at. Pick Custom dates to set your own start and end.
+  llm_description: 'Date range preset in the site''s timezone: today, yesterday, 24h, 7d, 14d, 28d, 30d, 90d, mtd, last_month, qtd, last_quarter, ytd, 12mo, last_year, all, or custom (then also give date_from and date_to).'
+  form: llm
+  default: 30d
+  options:
+  - value: today
+    label:
+      en_US: Today
+  - value: yesterday
+    label:
+      en_US: Yesterday
+  - value: 24h
+    label:
+      en_US: Last 24 hours
+  - value: 7d
+    label:
+      en_US: Last 7 days
+  - value: 14d
+    label:
+      en_US: Last 14 days
+  - value: 28d
+    label:
+      en_US: Last 28 days
+  - value: 30d
+    label:
+      en_US: Last 30 days
+  - value: 90d
+    label:
+      en_US: Last 90 days
+  - value: mtd
+    label:
+      en_US: Month to date
+  - value: last_month
+    label:
+      en_US: Last month
+  - value: qtd
+    label:
+      en_US: Quarter to date
+  - value: last_quarter
+    label:
+      en_US: Last quarter
+  - value: ytd
+    label:
+      en_US: Year to date
+  - value: 12mo
+    label:
+      en_US: Last 12 months
+  - value: last_year
+    label:
+      en_US: Last year
+  - value: all
+    label:
+      en_US: All time
+  - value: custom
+    label:
+      en_US: Custom dates
+- name: date_from
+  type: string
+  required: false
+  label:
+    en_US: Start date
+  human_description:
+    en_US: First day for Custom dates, as YYYY-MM-DD.
+  llm_description: First day of the range as YYYY-MM-DD. Only used when period is custom.
+  form: llm
+- name: date_to
+  type: string
+  required: false
+  label:
+    en_US: End date
+  human_description:
+    en_US: Last day for Custom dates, as YYYY-MM-DD. This day is included.
+  llm_description: Last day of the range as YYYY-MM-DD, inclusive. Only used when period is custom.
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Rows
+  human_description:
+    en_US: How many rows to return, 1 to 100.
+  llm_description: Number of rows, 1 to 100. Default 10.
+  form: llm
+  default: 10
+  min: 1
+  max: 100
+extra:
+  python:
+    source: tools/get_top_values.py
